@@ -2,7 +2,7 @@
 
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/DashboardController.php';
-require_once 'src/controllers/StartController.php';
+require_once 'src/controllers/DetailsController.php';
 
 class Routing {
 
@@ -19,9 +19,9 @@ class Routing {
         'dashboard' => [
             'controller' => "DashboardController",
             'action' => "index"
-        ],        
-        'start' => [
-            'controller' => "StartController",
+        ],
+        'details' => [
+            'controller' => "DetailsController",
             'action' => "index"
         ]
     ];
@@ -30,9 +30,10 @@ class Routing {
     
     //TODO na podstawie sciezki sprawdzamy jaki HTML zwrocic
     switch($path) {
-        case 'dashboard':
-        case 'start':
         case 'login':
+        case 'dashboard':
+        case 'details':
+        case 'start':
         case 'register':
             // Pobieramy nazwę klasy z tablicy $routes (np. "SecurityController")
             // Tworzymy nowy obiekt tej klasy (new SecurityController)
