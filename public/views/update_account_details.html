@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Moje konto</title>
+</head>
+<body>
+    <main>
+        <h1>Ustawienia profilu</h1>
+
+        <form action="updateUserDetails" method="POST">
+            <div>
+                <label for="user-email">Adres e-mail (niezmienny):</label><br>
+                <input id="user-email" name="email" type="email" value="przyklad@domena.pl" readonly>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="user-name">Imię:</label><br>
+                <input id="user-name" name="name" type="text" placeholder="Twoje imię">
+            </div>
+
+            <br>
+
+            <div>
+                <label for="user-surname">Nazwisko:</label><br>
+                <input id="user-surname" name="surname" type="text" placeholder="Twoje nazwisko">
+            </div>
+
+            <br>
+
+            <button type="submit">Zapisz zmiany</button>
+        </form>
+
+        <hr>
+
+        <form action="changePassword" method="POST">
+            <h2>Zmiana hasła</h2>
+            
+            <div>
+                <label for="current-password">Obecne hasło:</label><br>
+                <input id="current-password" name="currentPassword" type="password" required>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="new-password">Nowe hasło:</label><br>
+                <input id="new-password" name="newPassword" type="password" required>
+            </div>
+
+            <br>
+
+            <button type="submit">Zmień hasło</button>
+        </form>
+    </main>
+</body>
+</html>

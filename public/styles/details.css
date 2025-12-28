@@ -1,0 +1,91 @@
+body {
+    margin-top: 10vh;
+}
+
+.home-icon {
+    margin-right: 15vw;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.home-icon img {
+    width: 4rem;
+    height: 4rem;
+}
+
+/* nagłówek i treść posta */
+
+main {
+    margin: 0 20vw;
+}
+
+header h1 {
+    font-family: 'Inter', 'sans-serif';
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+.post-content p {
+    margin: 3.5rem 0;
+    font-family: 'Inter', 'sans-serif';
+    font-weight: 300;
+    font-size: 1.5rem;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+/* pasek dolny */
+
+.bottom-bar {
+    margin: 0 10vw;
+}
+
+.stats-container {
+    margin: 3.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+}
+
+.stat-icon img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+span {
+    font-family: 'Inter', 'sans-serif';
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+.stat-bar {
+    width: 18vw;
+    min-width: 15rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-green {
+    background-color: #5A716A;
+    color: #fff;
+}
+
+.color-blue {
+    background-color: #4281A4;
+    color: #FFFFFF;
+}
+
+.color-dark {
+    background-color: #373F51;
+    color: #FFFFFF;
+}

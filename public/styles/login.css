@@ -62,4 +62,17 @@ body {
 
     padding: 0.5rem 0 0.5rem 0;
     margin-top: 1rem;
+
+    transition: transform 160ms ease;
+
+}
+
+.login-panel button:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.login-panel button:active{
+    transform: scale(0.98);
+    background-color: #C8A96D;
 }

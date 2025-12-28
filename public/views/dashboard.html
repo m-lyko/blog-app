@@ -14,7 +14,9 @@
     <header class="top-bar">
         <div class="header-left">
             <div class="user-icon">
-                <img src="/public/img/user.svg">
+                <a href="/account" aria-label="Konto">
+                    <img src="/public/img/user.svg">
+                </a>
             </div>
             <div class="add-icon">
                 <img src="/public/img/addPost.svg">
@@ -30,60 +32,25 @@
 
     <main class="content-area">
         <section class="card-grid">
-            <div class="card">
-                <img src="/public/img/image3.jpg" alt="Profile image">
-                <div class="card-text">
-                    <h3>Wypadek przy Filharmonii</h3>
-                    <p>Stare miasto najgorzej!</p>
-                    <p class="description">Kiedy ostatnio byłam z moją koleżanką...</p>
-                </div>
-                <img src="/public/img/arrow.svg" alt="Arrow">
-            </div>
-            <div class="card">
-                <img src="/public/img/image1.jpg" alt="Profile image">
-                <div class="card-text">
-                    <h3>Wypadek przy Filharmonii</h3>
-                    <p>Stare miasto najgorzej!</p>
-                    <p class="description">Kiedy ostatnio byłam z moją koleżanką...</p>
-                </div>
-                <img src="/public/img/arrow.svg" alt="Arrow">
-            </div>
-            <div class="card">
-                <img src="/public/img/image2.jpg" alt="Profile image">
-                <div class="card-text">
-                    <h3>Wypadek przy Filharmonii</h3>
-                    <p>Stare miasto najgorzej!</p>
-                    <p class="description">Kiedy ostatnio byłam z moją koleżanką...</p>
-                </div>
-                <img src="/public/img/arrow.svg" alt="Arrow">
-            </div>
-            <div class="card">
-                <img src="/public/img/user.png" alt="Profile image">
-                <div class="card-text">
-                    <h3>Wypadek przy Filharmonii</h3>
-                    <p>Stare miasto najgorzej!</p>
-                    <p class="description">Kiedy ostatnio byłam z moją koleżanką...</p>
-                </div>
-                <img src="/public/img/arrow.svg" alt="Arrow">
-            </div>
-            <div class="card">
-                <img src="/public/img/user.png" alt="Profile image">
-                <div class="card-text">
-                    <h3>Wypadek przy Filharmonii</h3>
-                    <p>Stare miasto najgorzej!</p>
-                    <p class="description">Kiedy ostatnio byłam z moją koleżanką...</p>
-                </div>
-                <img src="/public/img/arrow.svg" alt="Arrow">
-            </div>
-            <div class="card">
-                <img src="/public/img/user.png" alt="Profile image">
-                <div class="card-text">
-                    <h3>Wypadek przy Filharmonii</h3>
-                    <p>Stare miasto najgorzej!</p>
-                    <p class="description">Kiedy ostatnio byłam z moją koleżanką...</p>
-                </div>
-                <img src="/public/img/arrow.svg" alt="Arrow">
-            </div>
+            <!-- sprawdza czy zmienna $posts istnieje -->
+            <!-- dwukropek zastępuje nawias klamrowy -->
+            <?php if(isset($posts)): ?>
+                <?php foreach($posts as $post): ?>
+                    <div class="card">
+                        <img src="<?= $post['imageUrlPath']; ?>" alt="Profile image">
+                        
+                        <div class="card-text">
+                            <h3><?= $post['title']; ?></h3>
+                            <p><?= $post['subtitle']; ?></p>
+                            <p class="description"><?= $post['description']; ?></p>
+                        </div>
+                        
+                        <a href="/details">
+                            <img src="/public/img/arrow.svg" alt="Arrow">
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </section>
     </main>
 

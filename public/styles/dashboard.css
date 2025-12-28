@@ -16,8 +16,8 @@ body {
 }
 
 .user-icon img, .add-icon img {
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 .search-container {
@@ -64,6 +64,15 @@ body {
     align-items: center;
     justify-content: space-around;
     border-radius: 1rem;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform: scale(1);
+    will-change: transform;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0rem 0rem 1.3rem rgba(0,0,0,0.12);
 }
 
 .card-text {
@@ -91,4 +100,14 @@ body {
     margin: 0.5rem;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.card img[alt="Arrow"] {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card a:hover img[alt="Arrow"] {
+    transform: translateX(0.1rem) scale(1.05);
+    filter: brightness(3);
 }

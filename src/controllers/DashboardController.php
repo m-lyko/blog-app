@@ -8,44 +8,51 @@ class DashboardController extends AppController {
 
         // TODO pobrać elementy na dashboard
         // TODO prepare dataset, and display in HTML
-        $cards = [
+        $posts = [
             [
                 'id' => 1,
-                'title' => 'Ace of Spades',
-                'subtitle' => 'Legendary card',
-                'imageUrlPath' => 'https://deckofcardsapi.com/static/img/AS.png',
-                'href' => '/cards/ace-of-spades'
+                'title' => 'Wypadek przy Filharmonii',
+                'subtitle' => 'Stare miasto najgorzej!',
+                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+                'imageUrlPath' => 'public/img/image3.jpg'
             ],
             [
                 'id' => 2,
-                'title' => 'Queen of Hearts',
-                'subtitle' => 'Classic romance',
-                'imageUrlPath' => 'https://deckofcardsapi.com/static/img/QH.png',
-                'href' => '/cards/queen-of-hearts'
+                'title' => 'Remont na Moście',
+                'subtitle' => 'Utrudnienia w ruchu',
+                'description' => 'Zarząd Dróg znowu ubiera nas w to...',
+                'imageUrlPath' => 'public/img/image2.jpg'
             ],
             [
                 'id' => 3,
-                'title' => 'King of Clubs',
-                'subtitle' => 'Royal strength',
-                'imageUrlPath' => 'https://deckofcardsapi.com/static/img/KC.png',
-                'href' => '/cards/king-of-clubs'
+                'title' => 'Wypadek przy Filharmonii',
+                'subtitle' => 'Stare miasto najgorzej!',
+                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+                'imageUrlPath' => 'public/img/image1.jpg'
             ],
             [
                 'id' => 4,
-                'title' => 'Jack of Diamonds',
-                'subtitle' => 'Sly and sharp',
-                'imageUrlPath' => 'https://deckofcardsapi.com/static/img/JD.png',
-                'href' => '/cards/jack-of-diamonds'
+                'title' => 'Wypadek przy Filharmonii',
+                'subtitle' => 'Stare miasto najgorzej!',
+                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+                'imageUrlPath' => 'public/img/image1.jpg'
             ],
             [
                 'id' => 5,
-                'title' => 'Ten of Hearts',
-                'subtitle' => 'Lucky draw',
-                'imageUrlPath' => 'https://deckofcardsapi.com/static/img/0H.png',
-                'href' => '/cards/ten-of-hearts'
+                'title' => 'Wypadek przy Filharmonii',
+                'subtitle' => 'Stare miasto najgorzej!',
+                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+                'imageUrlPath' => 'public/img/image2.jpg'
             ],
+            [
+                'id' => 6,
+                'title' => 'Wypadek przy Filharmonii',
+                'subtitle' => 'Stare miasto najgorzej!',
+                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+                'imageUrlPath' => 'public/img/image3.jpg'
+            ],                                                
         ];
 
-        return $this->render("dashboard", ['cards' => $cards]);
+        return $this->render("dashboard", ['posts' => $posts]);
     }
 }

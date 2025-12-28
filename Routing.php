@@ -3,6 +3,7 @@
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/DashboardController.php';
 require_once 'src/controllers/DetailsController.php';
+require_once 'src/controllers/AccountController.php';
 
 class Routing {
 
@@ -23,6 +24,10 @@ class Routing {
         'details' => [
             'controller' => "DetailsController",
             'action' => "index"
+        ],
+        'account' => [
+            'controller' => "AccountController",
+            'action' => "viewDetails"
         ]
     ];
 
@@ -35,6 +40,7 @@ class Routing {
         case 'details':
         case 'start':
         case 'register':
+        case 'account':
             // Pobieramy nazwę klasy z tablicy $routes (np. "SecurityController")
             // Tworzymy nowy obiekt tej klasy (new SecurityController)
             $controller = new Routing::$routes[$path]['controller'];
