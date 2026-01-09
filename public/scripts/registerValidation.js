@@ -12,30 +12,30 @@ function areValuesSame(element1, element2) {
 }
 
 // funkcja wyświetlająca / usuwająca błąd dla konkretnego pola
-function markValidation(element, condition) {
+function markValidation(element1, element2, condition) {
     // założenie że błąd jest następnym rodzeństwem
-    const nextElement = element.nextElementSibling;
+    const nextElement = element1.nextElementSibling;
     // jeśli istnieje i ten element to komunikat → czyścimy
     if(nextElement && nextElement.classList.contains('message-error')){
         nextElement.remove();
     }
 
     // jeśli warunek (areValuesSame: true) nie jest spełniony i pole nie jest puste → wyskakuje błąd
-    if(!condition && element.value !== '') {
+    if(!condition && element1.value !== '' && element2.value !== '') {
         const message = document.createElement('div');
         message.classList.add('message-error');
         message.innerText = 'Wartości nie są identyczne.';
 
-        element.after(message);
+        element1.after(message);
     }
 }
 
 function validateEmail() {
-    markValidation(confirmedEmailInput, areValuesSame(emailInput, confirmedEmailInput));
+    markValidation(confirmedEmailInput, emailInput, areValuesSame(emailInput, confirmedEmailInput));
 }
 
 function validatePassword() {
-    markValidation(confirmedPasswordInput, areValuesSame(passwordInput, confirmedPasswordInput));
+    markValidation(confirmedPasswordInput, emailInput, areValuesSame(passwordInput, confirmedPasswordInput));
 }
 
 
@@ -45,3 +45,15 @@ emailInput.addEventListener('keyup', validateEmail);
 
 confirmedPasswordInput.addEventListener('keyup', validatePassword);
 passwordInput.addEventListener('keyup', validatePassword);
+
+form.addEventListener('submit', 
+    function(event) {
+        const emailValid = areValuesSame(emailInput, confirmedEmailInput);
+        const passwordValid = areValuesSame(passwordInput, confirmedPasswordInput);
+
+        if(!emailValid || !passValid) {
+            event.preventDefault(); // zatrzymanie wysłania do PHP
+            alert('Popraw błędy w formularzu przed wysłaniem.');
+        }
+    }
+);
