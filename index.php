@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 #echo "<h1>Hi Students! 🌅</h1>";
 
 // Wczytujemy plik 'Routing.php', dzięki czemu skrypt "widzi" klasę Routing i może używać jej metod.

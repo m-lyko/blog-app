@@ -1,6 +1,9 @@
 <?php
 
 require_once 'AppController.php';
+require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../repository/UserRepository.php';
+
 
 class SecurityController extends AppController {
 
@@ -21,33 +24,64 @@ class SecurityController extends AppController {
         // ?? '' jeśli są puste to przypisujemy pusty ciąg znaków
         $email = $_POST["email"] ?? '';
         $password = $_POST["password"] ?? '';
+        
+        $userRepository = new UserRepository();
+        
+        // szukamy użytkownika w bazie po emailu
+        $user = $userRepository->getUser($email);
 
-        // var_dump uzywamy do szybkiego wyświetlenia zawartości zmiennych w celach debugowania
-        var_dump($email, $password);
-        // TODO get data from database
+        // sprawdzamy, czy użytkownik istnieje
+        // sprawdzamy zgodność hasła
+            // TODO funkcja hashująca
+        if(!$user || $user->getPassword() !== $password) {
+            return $this->render('login', ['messages' => ['Nieprawidłowy login lub hasło.']]);
+        }
 
-        // wyrenderowanie widoku
-        return $this->render("dashboard");
+        // zapisujemy użytkownika w sesji
+        $_SESSION['user'] = $user->getEmail();
+
+        // przekierowanie na dashboard
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/dashboard");
+        
     }
 
     public function register() {
-        // TODO pobranie z formularza email i hasła
-        // TODO insert do bazy danych
-        // TODO zwrocenie informacji o pomyslnym zarejstrowaniu
         
-        if($this->isGet()){
-            return $this->render("register");
+        // jeśli użytkownik pobiera stronę GET, wtedy od razu renderujemy
+        if(!$this->isPost()){
+            return $this->render('register');
         }
 
-        $email = $_POST["email"] ?? "";
-        $password1 = $_POST["password1"] ?? '';
-        $password2 = $_POST["password2"] ?? '';
-        $firstname = $_POST["firstname"] ?? '';
-        $lastname = $_POST["lastname"] ?? '';
-        
-        // TODO insert to database user
-        // sprawdź czy hasła są takie same
+        // pobranie danych z formularza
+        $email = $_POST['email'] ?? '';
+        $confirmedEmail = $_POST['confirmedEmail'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $confirmedPassword = $_POST['confirmedPassword'] ?? '';
+        $name = $_POST['name'] ?? '';
+        $surname = $_POST['surname'] ?? '';
 
-        return $this->render("login", ["message" => "Zarejestrowano uzytkownika"]);
+        //walidacja e-mail
+        if($email !== $confirmedEmail) {
+            return $this->render('register', ['messages' => ['Podane adresy e-mail nie są takie same.']]);
+        }
+
+        //walidacja haseł
+        if($password !== $confirmedPassword) {
+            return $this->render('register', ['messages' => ['Hasła muszą być identyczne!']]);
+        }
+
+        // TODO try catch email już jest w bazie
+        $userRepository = new UserRepository();
+        
+        $user = new User($email, $password, $name, $surname);
+
+        $userRepository->addUser($user);
+
+        return $this->render("login", ["message" => "Zarejestrowano uzytkownika pomyślnie."]);
+    }
+
+    public function registered() {
+        return $this->render("registered");
     }
 }

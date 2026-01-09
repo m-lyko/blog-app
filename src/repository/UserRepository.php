@@ -1,14 +1,14 @@
 <?php
 
-require_once 'Repository.php'
-require_once __DIR__./../models/User.php;
+require_once 'Repository.php';
+require_once __DIR__.'/../models/User.php';
 
 class UserRepository extends Repository {
 
     public function addUser(User $user) 
     {
         // znaki ? to placeholdery (ważna kolejność!)
-        $query = this->database->connect()->prepare(
+        $query = $this->database->connect()->prepare(
             'INSERT INTO users (name, surname, email, password)
             VALUES (?, ?, ?, ?)'
         );
@@ -17,7 +17,7 @@ class UserRepository extends Repository {
         $query->execute(
             [
                 $user->getName(),
-                $user->getSurame(),
+                $user->getSurname(),
                 $user->getEmail(),
                 $user->getPassword()
             ]
@@ -41,7 +41,7 @@ class UserRepository extends Repository {
         $query->execute();
 
         // pobranie wyniku jako tablicy asocjacyjnej
-        $users = $query->fetchAll(PDO::FETCH_ASSOC);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
 
         // jeśli użytkownik nie istnieje → null
         if($user == false){

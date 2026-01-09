@@ -13,7 +13,7 @@ class Repository {
     }
 
 
-    public function addUser($user)
+    public function addUser(User $user)
     {
         
     }

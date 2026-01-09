@@ -17,6 +17,10 @@ class Routing {
             'controller' => "SecurityController",
             'action' => "register"
         ],
+        'registered' => [
+            'controller' => "SecurityController",
+            'action' => "registered"
+        ],
         'dashboard' => [
             'controller' => "DashboardController",
             'action' => "index"
@@ -36,10 +40,10 @@ class Routing {
     //TODO na podstawie sciezki sprawdzamy jaki HTML zwrocic
     switch($path) {
         case 'login':
+        case 'register':
+        case 'registered':
         case 'dashboard':
         case 'details':
-        case 'start':
-        case 'register':
         case 'account':
             // Pobieramy nazwę klasy z tablicy $routes (np. "SecurityController")
             // Tworzymy nowy obiekt tej klasy (new SecurityController)
