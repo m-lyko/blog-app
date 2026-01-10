@@ -12,10 +12,19 @@ class AppController {
     
     // $template to nazwa pliku (np. "dashboard"), $variables to dane (np. karty)
     protected function render(string $template = null, array $variables = []){
-        // ustalenie, ścieżki, w której będziemy szukać widoku o końcówce .html
-        $templatePath = 'public/views/'.$template.'.html';
+        
         $templatePath404 = 'public/views/404.html';
         $output = "";
+
+        // najpierw szukamy .php
+        $templatePath = 'public/views/' . $template . '.php';
+        $output = 'Nie znaleziono pliku.';
+
+        // jeśli nie ma .php → .html
+        if(!file_exists($templatePath)){
+            $templatePath = 'public/views/' . $template . '.html';
+
+        }
 
         // Sprawdzenie dostępności - czy plik widoku istnieje
         if(file_exists($templatePath)){
@@ -38,6 +47,7 @@ class AppController {
             include $templatePath404;
             $output = ob_get_clean();
         }
-        echo $output;
+        
+        print $output;
     }
 }

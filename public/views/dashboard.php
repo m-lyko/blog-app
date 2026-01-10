@@ -37,12 +37,12 @@
             <?php if(isset($posts)): ?>
                 <?php foreach($posts as $post): ?>
                     <div class="card">
-                        <img src="<?= $post['imageUrlPath']; ?>" alt="Profile image">
+                        <img src="<?= $post->getAvatarPath(); ?>" alt="Profile image">
                         
                         <div class="card-text">
-                            <h3><?= $post['title']; ?></h3>
-                            <p><?= $post['subtitle']; ?></p>
-                            <p class="description"><?= $post['description']; ?></p>
+                            <h3><?= $post->getTitle(); ?></h3>
+                            <p><?= $post->getSubtitle(); ?></p>
+                            <p class="description"><?= $post->getDescription(); ?></p>
                         </div>
                         
                         <a href="/details">

@@ -9,8 +9,8 @@ class UserRepository extends Repository {
     {
         // znaki ? to placeholdery (ważna kolejność!)
         $query = $this->database->connect()->prepare(
-            'INSERT INTO users (name, surname, email, password)
-            VALUES (?, ?, ?, ?)'
+            'INSERT INTO users (name, surname, email, password, role)
+            VALUES (?, ?, ?, ?, ?)'
         );
 
         // wykonanie zapytania
@@ -19,7 +19,8 @@ class UserRepository extends Repository {
                 $user->getName(),
                 $user->getSurname(),
                 $user->getEmail(),
-                $user->getPassword()
+                $user->getPassword(),
+                'user'
             ]
         );
     }
@@ -53,7 +54,9 @@ class UserRepository extends Repository {
             $user['email'],
             $user['password'],
             $user['name'],
-            $user['surname']
+            $user['surname'],
+            $user['role'],
+            $user['avatar'] ?? null
         );
     }
 

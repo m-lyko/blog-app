@@ -33,16 +33,57 @@ class SecurityController extends AppController {
         // sprawdzamy, czy użytkownik istnieje
         // sprawdzamy zgodność hasła
             // TODO funkcja hashująca
-        if(!$user || $user->getPassword() !== $password) {
+        if(!$user || !password_verify($password, $user['password'])) {
             return $this->render('login', ['messages' => ['Nieprawidłowy login lub hasło.']]);
         }
 
+        // utworzenie sesji użytkownika
+        session_regenerate_id(true); // nowy id sesji (bezpieczeństwo)
+
         // zapisujemy użytkownika w sesji
-        $_SESSION['user'] = $user->getEmail();
+        $_SESSION['user_email'] = $user->getEmail();
+        $_SESSION['user_name'] = $user->getName();
+        $_SESSION['user_surname'] = $user->getSurname();
+        
+        // prosta flaga
+        $_SESSION['is_logged_in'] = true;
+
 
         // przekierowanie na dashboard
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");
+    }
+
+    public function logout() {
+        
+        // upewniamy się, że sesja jest uruchomiona
+        if(session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // wyczyszczenie danych sesji
+        $_SESSION = [];
+
+        // usunięcie ciasteczka sesji (opcjonalnie)
+        if(ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+
+        // niszczymy sessję
+        session_destroy();
+
+        // przekierowania na ekran logowania
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/login");
     }
 
     public function register() {

@@ -59,15 +59,27 @@ body {
 }
 
 .card {
-    display: flex;
+    display: grid;
     background-color: white;
-    align-items: center;
-    justify-content: space-around;
     border-radius: 1rem;
-
+    grid-template-columns: 24% 60% 20%;
+    align-items: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     transform: scale(1);
     will-change: transform;
+}
+
+.card > img {
+    justify-self: center;
+}
+
+.card-text {
+    justify-self: start;
+    text-align: left;
+}
+
+.card a {
+    justify-self: center;
 }
 
 .card:hover {

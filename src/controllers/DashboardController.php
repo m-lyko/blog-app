@@ -1,8 +1,16 @@
 <?php
 
 require_once 'AppController.php';
+require_once __DIR__ . '/../repository/PostRepository.php';
 
 class DashboardController extends AppController {
+
+    private $postRepository;
+
+    public function __construct()
+    {
+        $this->postRepository = new PostRepository;
+    }
 
     public function index() {
 
@@ -17,51 +25,53 @@ class DashboardController extends AppController {
             exit; // zatrzymanie skryptu
         }
 
-        $posts = [
-            [
-                'id' => 1,
-                'title' => 'Wypadek przy Filharmonii',
-                'subtitle' => 'Stare miasto najgorzej!',
-                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
-                'imageUrlPath' => 'public/img/image3.jpg'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Remont na Moście',
-                'subtitle' => 'Utrudnienia w ruchu',
-                'description' => 'Zarząd Dróg znowu ubiera nas w to...',
-                'imageUrlPath' => 'public/img/image2.jpg'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Wypadek przy Filharmonii',
-                'subtitle' => 'Stare miasto najgorzej!',
-                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
-                'imageUrlPath' => 'public/img/image1.jpg'
-            ],
-            [
-                'id' => 4,
-                'title' => 'Wypadek przy Filharmonii',
-                'subtitle' => 'Stare miasto najgorzej!',
-                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
-                'imageUrlPath' => 'public/img/image1.jpg'
-            ],
-            [
-                'id' => 5,
-                'title' => 'Wypadek przy Filharmonii',
-                'subtitle' => 'Stare miasto najgorzej!',
-                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
-                'imageUrlPath' => 'public/img/image2.jpg'
-            ],
-            [
-                'id' => 6,
-                'title' => 'Wypadek przy Filharmonii',
-                'subtitle' => 'Stare miasto najgorzej!',
-                'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
-                'imageUrlPath' => 'public/img/image3.jpg'
-            ],                                                
-        ];
+        $posts = $this->postRepository->getPosts();
 
-        return $this->render("dashboard", ['posts' => $posts]);
+        // $posts = [
+        //     [
+        //         'id' => 1,
+        //         'title' => 'Wypadek przy Filharmonii',
+        //         'subtitle' => 'Stare miasto najgorzej!',
+        //         'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+        //         'imageUrlPath' => 'public/img/image3.jpg'
+        //     ],
+        //     [
+        //         'id' => 2,
+        //         'title' => 'Remont na Moście',
+        //         'subtitle' => 'Utrudnienia w ruchu',
+        //         'description' => 'Zarząd Dróg znowu ubiera nas w to...',
+        //         'imageUrlPath' => 'public/img/image2.jpg'
+        //     ],
+        //     [
+        //         'id' => 3,
+        //         'title' => 'Wypadek przy Filharmonii',
+        //         'subtitle' => 'Stare miasto najgorzej!',
+        //         'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+        //         'imageUrlPath' => 'public/img/image1.jpg'
+        //     ],
+        //     [
+        //         'id' => 4,
+        //         'title' => 'Wypadek przy Filharmonii',
+        //         'subtitle' => 'Stare miasto najgorzej!',
+        //         'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+        //         'imageUrlPath' => 'public/img/image1.jpg'
+        //     ],
+        //     [
+        //         'id' => 5,
+        //         'title' => 'Wypadek przy Filharmonii',
+        //         'subtitle' => 'Stare miasto najgorzej!',
+        //         'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+        //         'imageUrlPath' => 'public/img/image2.jpg'
+        //     ],
+        //     [
+        //         'id' => 6,
+        //         'title' => 'Wypadek przy Filharmonii',
+        //         'subtitle' => 'Stare miasto najgorzej!',
+        //         'description' => 'Kiedy ostatnio byłam z moją koleżanką...',
+        //         'imageUrlPath' => 'public/img/image3.jpg'
+        //     ],                                                
+        // ];
+
+        $this->render("dashboard", ['posts' => $posts]);
     }
 }
