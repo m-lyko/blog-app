@@ -29,7 +29,7 @@ class UserRepository extends Repository {
         // wywołanie funkcji prepare() - "przygotuj, ale jeszcze nie wywołuj"
         $query = $this->database->connect()->prepare(
             '
-            SELECT * FROM public.users WHERE email =: email;
+            SELECT * FROM public.users WHERE email = :email;
             '
         );
 

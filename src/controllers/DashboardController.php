@@ -8,6 +8,15 @@ class DashboardController extends AppController {
 
         // TODO pobrać elementy na dashboard
         // TODO prepare dataset, and display in HTML
+
+        // sprawdzenie, czy użytkownik jest zalogowany
+        if(!isset($_SESSION['user'])) {
+            // jeśli nie → odsyłamy do logowania
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/login");
+            exit; // zatrzymanie skryptu
+        }
+
         $posts = [
             [
                 'id' => 1,

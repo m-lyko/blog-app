@@ -35,7 +35,7 @@ function validateEmail() {
 }
 
 function validatePassword() {
-    markValidation(confirmedPasswordInput, emailInput, areValuesSame(passwordInput, confirmedPasswordInput));
+    markValidation(confirmedPasswordInput, passwordInput, areValuesSame(passwordInput, confirmedPasswordInput));
 }
 
 
@@ -51,7 +51,7 @@ form.addEventListener('submit',
         const emailValid = areValuesSame(emailInput, confirmedEmailInput);
         const passwordValid = areValuesSame(passwordInput, confirmedPasswordInput);
 
-        if(!emailValid || !passValid) {
+        if(!emailValid || !passwordValid) {
             event.preventDefault(); // zatrzymanie wysłania do PHP
             alert('Popraw błędy w formularzu przed wysłaniem.');
         }

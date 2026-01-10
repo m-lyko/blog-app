@@ -43,7 +43,6 @@ class SecurityController extends AppController {
         // przekierowanie na dashboard
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");
-        
     }
 
     public function register() {
