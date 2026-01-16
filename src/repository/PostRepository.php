@@ -8,12 +8,11 @@ class PostRepository extends Repository {
     public function getPost(int $id): ?Post
     {
         $query = $this->database->connect()->prepare(
-            'SELECT
-                title,
-                subtitle,
-                description,
-                avatar
-            FROM public.posts WHERE id = :id'
+            '
+            SELECT * FROM v_posts_details   
+            WHERE
+                id_posts = :id
+           '                
         );
 
         $query->bindParam(':id', $id, PDO::PARAM_INT);
@@ -26,19 +25,21 @@ class PostRepository extends Repository {
         }
 
         return new Post(
+            $post['id_posts'],
             $post['title'],
-            $post['subtitle'],
             $post['description'],
-            $post['avatar']
+            $post['avatar'],
+            $post['name'],
+            $post['surname']
         );
     }
 
-    public function addPost(Post $post): void
+    public function addPost(Post $post, int $authorID): void
     {
         $date = new DateTime();
         $query = $this->database->connect()->prepare(
-            'INSERT INTO posts (title, description, created_at)
-            values (?, ?, ?)'
+            'INSERT INTO posts (title, description, created_at, author)
+            values (?, ?, ?, ?)'
         );
 
         // dodać dodawania autora posta
@@ -47,8 +48,8 @@ class PostRepository extends Repository {
             [
                 $post->getTitle(),
                 $post->getDescription(),
-                // $post->getImage(),
-                $date->format('Y-m-d H:i:s')
+                $date->format('Y-m-d H:i:s'),
+                $authorID
             ]
         );
     }
@@ -59,16 +60,7 @@ class PostRepository extends Repository {
 
         $query = $this->database->connect()->prepare(
             '
-            SELECT
-                p.title,
-                p.subtitle,
-                p.description,
-                u.avatar
-            FROM
-                posts p
-                LEFT JOIN users u ON p.author = u.id
-            ORDER BY
-                created_at DESC;    
+            SELECT * FROM v_posts_details
             '        
         );
 
@@ -77,10 +69,12 @@ class PostRepository extends Repository {
 
         foreach ($posts as $post) {
             $result[] = new Post(
+                $post['id_posts'],
                 $post['title'],
-                $post['subtitle'],
                 $post['description'],
-                $post['avatar']
+                $post['avatar'],
+                $post['name'],
+                $post['surname']
             );
         }
 

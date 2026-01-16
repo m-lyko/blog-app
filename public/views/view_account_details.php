@@ -14,9 +14,9 @@
 
         <section>
             <h2>Dane podstawowe</h2>
-            <p><strong>Imię:</strong> <span>Jan</span></p>
-            <p><strong>Nazwisko:</strong> <span>Kowalski</span></p>
-            <p><strong>E-mail:</strong> <span>jan@przyklad.pl</span></p>
+            <p><strong>Imię:</strong> <span><?= $name; ?></span></p>
+            <p><strong>Nazwisko:</strong> <span><?= $surname; ?></span></p>
+            <p><strong>E-mail:</strong> <span><?= $email; ?></span></p>
         </section>
 
         <hr>
@@ -26,7 +26,7 @@
             <p><strong>Liczba Twoich wątków:</strong> 5</p>
         </section>
 
-        <a href="/login">Wyloguj się</a>
+        <a href="/logout">Wyloguj się</a>
     </main>
 </body>
 </html>

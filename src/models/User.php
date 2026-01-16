@@ -1,6 +1,7 @@
 <?php
 
 class User {
+    private $id;
     private $email;
     private $password;
     private $name;
@@ -13,9 +14,10 @@ class User {
         string $email, 
         string $password, 
         string $name, 
-        string $surname,,
+        string $surname,
         string $role = 'user',
-        $avatar = null
+        $avatar = null,
+        $id = null
     ) {
         $this->email = $email;
         $this->password = $password;
@@ -23,9 +25,14 @@ class User {
         $this->surname = $surname;
         $this->role = $role;
         $this->avatar = $avatar;
+        $this->id = $id;
     }
 
     // gettery
+
+    public function getID() {
+        return $this->id;
+    }
 
     public function getEmail(): string {
         return $this->email;

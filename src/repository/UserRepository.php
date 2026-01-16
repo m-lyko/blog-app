@@ -56,7 +56,8 @@ class UserRepository extends Repository {
             $user['name'],
             $user['surname'],
             $user['role'],
-            $user['avatar'] ?? null
+            $user['avatar'] ?? null,
+            $user['id_users']
         );
     }
 

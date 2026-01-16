@@ -33,7 +33,7 @@ class SecurityController extends AppController {
         // sprawdzamy, czy użytkownik istnieje
         // sprawdzamy zgodność hasła
             // TODO funkcja hashująca
-        if(!$user || !password_verify($password, $user['password'])) {
+        if(!$user || !password_verify($password, $user->getPassword())) {
             return $this->render('login', ['messages' => ['Nieprawidłowy login lub hasło.']]);
         }
 
@@ -41,6 +41,7 @@ class SecurityController extends AppController {
         session_regenerate_id(true); // nowy id sesji (bezpieczeństwo)
 
         // zapisujemy użytkownika w sesji
+        $_SESSION['user_id'] = $user->getID();
         $_SESSION['user_email'] = $user->getEmail();
         $_SESSION['user_name'] = $user->getName();
         $_SESSION['user_surname'] = $user->getSurname();
@@ -64,7 +65,7 @@ class SecurityController extends AppController {
         // wyczyszczenie danych sesji
         $_SESSION = [];
 
-        // usunięcie ciasteczka sesji (opcjonalnie)
+        // usunięcie ciasteczka sesji
         if(ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(
@@ -78,7 +79,8 @@ class SecurityController extends AppController {
             );
         }
 
-        // niszczymy sessję
+        // niszczymy sesję
+        session_unset();
         session_destroy();
 
         // przekierowania na ekran logowania
@@ -94,12 +96,12 @@ class SecurityController extends AppController {
         }
 
         // pobranie danych z formularza
-        $email = $_POST['email'] ?? '';
-        $confirmedEmail = $_POST['confirmedEmail'] ?? '';
-        $password = $_POST['password'] ?? '';
-        $confirmedPassword = $_POST['confirmedPassword'] ?? '';
-        $name = $_POST['name'] ?? '';
-        $surname = $_POST['surname'] ?? '';
+        $email = $_POST['email'];
+        $confirmedEmail = $_POST['confirmedEmail'];
+        $password = $_POST['password'];
+        $confirmedPassword = $_POST['confirmedPassword'];
+        $name = $_POST['name'];
+        $surname = $_POST['surname'];
 
         //walidacja e-mail
         if($email !== $confirmedEmail) {
@@ -113,8 +115,18 @@ class SecurityController extends AppController {
 
         // TODO try catch email już jest w bazie
         $userRepository = new UserRepository();
+
+        $options = [
+            'cost' => 12,
+        ];
+
+
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
         
-        $user = new User($email, $password, $name, $surname);
+        // usunięcie niezabezpieczonego hasła (bezpieczeństwo)
+        unset($password);
+        
+        $user = new User($email, $hashedPassword, $name, $surname);
 
         $userRepository->addUser($user);
 

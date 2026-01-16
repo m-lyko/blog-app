@@ -14,6 +14,10 @@ class Routing {
             'controller' => SecurityController::class,
             'action' => "login"
         ],
+        'logout' => [
+            'controller' => SecurityController::class,
+            'action' => "logout"
+        ],
         'register' => [
             'controller' => SecurityController::class,
             'action' => "register"

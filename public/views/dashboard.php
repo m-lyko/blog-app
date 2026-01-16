@@ -19,7 +19,9 @@
                 </a>
             </div>
             <div class="add-icon">
+                <a href="/addpost" aria-label="Dodaj post">
                 <img src="/public/img/addPost.svg">
+                </a>        
             </div>
         </div>
         <div class="header-right">
@@ -41,11 +43,11 @@
                         
                         <div class="card-text">
                             <h3><?= $post->getTitle(); ?></h3>
-                            <p><?= $post->getSubtitle(); ?></p>
-                            <p class="description"><?= $post->getDescription(); ?></p>
+                            <p class="description"><?= $post->getShortDescription(); ?></p>
+                            <p class="author">Autor: <?= $post->getAuthorName(); ?></p>
                         </div>
                         
-                        <a href="/details">
+                        <a href="/details?id=<?= $post->getID(); ?>">
                             <img src="/public/img/arrow.svg" alt="Arrow">
                         </a>
                     </div>

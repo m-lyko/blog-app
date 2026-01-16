@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter.ttf');
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #D8D5DB;
+    margin: 3rem;
+}
+
+.back-button {
+    text-decoration: none;
+}
+
+
+.menu-container {
+    display: grid;
+    width: fit-content;
+    margin: 3rem 0;
+}
+
+
+.main-button, .back-button, .add-button {
+    grid-area: 1 / 1;
+    border-radius: 100%;
+    background: none;
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+    transition-delay: 0.05s
+
+}
+
+.main-button {
+    z-index: 10;
+}
+
+.menu-container:hover .back-button {
+    transform: translateX(4.5rem);
+}
+
+.menu-container:hover .add-button {
+    transform: translateX(9rem);
+}
+
+.menu-container:hover .back-button:hover {
+    transform: translateX(4.5rem) scale(1.1);
+}
+
+.menu-container:hover .add-button:hover {
+    transform: translateX(9rem) scale(1.1);
+}
+
+.main-button:hover,
+.back-button:hover,
+.add-button:hover{
+    filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.25));
+}
+
+.main-button img, .back-button img, .add-button img {
+    width: 4rem;
+    height: 4rem;
+    display: block;
+}
+
+.post-container {
+    margin: 0 20vw;
+}
+
+.post-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    margin: 2rem 0;
+}
+
+input, textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    border-radius: 0.3rem;
+
+    font-family: 'Inter', 'sans-serif';
+    font-weight: 300;
+    font-size: 1.5rem;
+
+    padding: 0.5rem;
+}
+
+input {
+    border-radius: 0.2rem;
+    font-family: 'Inter', 'sans-serif';
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+textarea {
+    font-family: 'Inter', 'sans-serif';
+    font-weight: 300;
+    font-size: 1.5rem;
+
+    height: 40vh;
+}
