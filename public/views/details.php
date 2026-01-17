@@ -33,32 +33,32 @@
     </div>
     <section class="bottom-bar">
         <div class="base-container">
-            <div class="stats-container">
+            <div class="box-container">
 
-                <div class="stat-box">
-                    <div class="stat-icon">
-                        <img src="<?= $post->getAvatarPath(); ?>" alt="Profile image">
-                    </div>
-                    <div class="stat-bar color-green">
-                        <span>Autor: <?= $post->getAuthorName(); ?></span>
+                <div class="box">
+                    <div class="bar left">
+                        <div class="box-icon">
+                            <img src="/<?= $post->getAvatarPath(); ?>" alt="Profile image">
+                        </div>
+                        <span>Autor: <strong class="author-name"><?= $post->getAuthorName(); ?></strong></span>
                     </div>
                 </div>
 
-                <div class="stat-box">
-                    <div class="stat-icon">
-                        <img src="/public/img/share.svg" alt="Share">
-                    </div>
-                    <div class="stat-bar color-blue center-text">
-                        <span>77</span>
+                <div class="box">
+                    <div class="bar center">
+                        <div class="box-icon">
+                            <img src="/public/img/share.svg" alt="Share">
+                        </div>
+                        <span><b>77</b></span>
                     </div>
                 </div>                
 
-                <div class="stat-box reverse">
-                    <div class="stat-bar color-dark center-text">
-                        <span>77</span>
-                    </div>
-                    <div class="stat-icon icon-right">
-                        <img src="/public/img/like.svg" alt="Like">                    
+                <div class="box reverse">
+                    <div class="bar right">
+                        <span><b>77</b></span>
+                        <div class="box-icon icon-right">
+                            <img src="/public/img/like.svg" alt="Like">                    
+                        </div>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,21 @@ require_once __DIR__.'/../models/User.php';
 
 class UserRepository extends Repository {
 
+    private static $instance = null;
+
+    private function __construct()
+    {
+        parent::__construct();
+    }
+
+    public static function getInstance()
+    {
+        if(self::$instance == null){
+            self::$instance = new UserRepository();
+        }
+        return self::$instance;
+    }
+
     public function addUser(User $user) 
     {
         // znaki ? to placeholdery (ważna kolejność!)
@@ -23,6 +38,28 @@ class UserRepository extends Repository {
                 'user'
             ]
         );
+    }
+
+    public function editUserDetails(int $id, string $name, string $surname, string $email, string $password)
+    {
+        $stmt = $this->database->connect()->prepare(
+            '
+            UPDATE users SET 
+            name = ?, 
+            surname = ?,
+            email = ?,
+            password = ?
+            WHERE id_users = ?
+            '
+        );
+
+        $stmt->execute([
+            $name,
+            $surname,
+            $email,
+            $password,
+            $id
+        ]);
     }
 
     public function getUser(string $email): ?User 

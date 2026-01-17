@@ -31,12 +31,9 @@ class Post {
     {
         return $this->description;
     }
-
-    public function getShortDescription()
+    
+    public static function shortenDescription(string $text, int $limit = 12): string
     {
-        $text = $this->description;
-        $limit=12;
-
         $words = explode(' ', $text);
 
         if(count($words) > $limit) {
@@ -44,6 +41,11 @@ class Post {
         }
 
         return $text;
+    }
+
+    public function getShortDescription()
+    {
+        return self::shortenDescription($this->description);
     }
 
     public function getAvatarPath()

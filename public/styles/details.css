@@ -44,26 +44,33 @@ header h1 {
 /* pasek dolny */
 
 .bottom-bar {
-    margin: 0 10vw;
+    margin: 15vh 10vw;
 }
 
-.stats-container {
+.box-container {
     margin: 3.5rem 0;
     display: flex;
     justify-content: space-between;
     gap: 1rem;
 }
 
-.stat-box {
+.box {
     display: flex;
     align-items: center;
 }
 
-.stat-icon img {
+.box-icon img {
     width: 4rem;
     height: 4rem;
-    border-radius: 50%;
+    border-radius: 100%;
     object-fit: cover;
+
+    border: 0.35rem solid #D8D5DB;
+    background-color: #D8D5DB;
+}
+
+.author-name {
+    font-weight: 600;
 }
 
 span {
@@ -72,8 +79,16 @@ span {
     font-size: 1.2rem;
 }
 
-.stat-bar {
-    width: 18vw;
+.bar.center span {
+    transform: translateX(3rem);
+}
+
+.bar.left span {
+    transform: translateX(2rem);
+}
+
+.bar {
+    width: 20vw;
     min-width: 15rem;
     height: 2rem;
     border-radius: 0.3rem;
@@ -82,17 +97,40 @@ span {
     align-items: center;
 }
 
-.color-green {
+.left {
     background-color: #5A716A;
-    color: #fff;
+    color: #FFFFFF;
 }
 
-.color-blue {
+.center {
     background-color: #4281A4;
     color: #FFFFFF;
 }
 
-.color-dark {
+.right {
     background-color: #373F51;
     color: #FFFFFF;
+}
+
+
+.bar {
+    position: relative;
+    min-width: 20rem;
+}
+
+.bar.left .box-icon {
+    position: absolute;
+    left: 0;
+    transform: translateX(3.5rem);
+}
+
+.bar.center .box-icon {
+    position: absolute;
+    transform: translateX(-2rem);
+}
+
+.bar.right .box-icon {
+    position: absolute;
+    right: 0;
+    transform: translateX(-3.5rem);
 }

@@ -9,6 +9,15 @@ class SecurityController extends AppController {
 
     public function login() {
 
+
+        // jeśli użytkownik jest zalogowany, to od razu
+        // przekierowanie na stronę główną
+        if(isset($_SESSION['user_email'])) {
+            header("Location: /dashboard");
+            exit();
+        }
+
+
         // Sprawdzamy, czy żądanie jest metodą GET
         // czyli czy użytkownik otworzył stronę logowania
         if($this->isGet()){
@@ -17,15 +26,17 @@ class SecurityController extends AppController {
             //$this->render("login", ["name"=> "Jan"]);
         }
 
+
         // jeśli nie spełnia warunku this->isGet()
         // to poniżej mamy kod dla $this->isPost()
+        // czyli kliknięcie przycisku login (wysłąnie)
 
         // Pobieramy dane z tablicy $_POST i przypisujemy do zmiennych
         // ?? '' jeśli są puste to przypisujemy pusty ciąg znaków
         $email = $_POST["email"] ?? '';
         $password = $_POST["password"] ?? '';
         
-        $userRepository = new UserRepository();
+        $userRepository = UserRepository::getInstance();
         
         // szukamy użytkownika w bazie po emailu
         $user = $userRepository->getUser($email);
@@ -114,7 +125,7 @@ class SecurityController extends AppController {
         }
 
         // TODO try catch email już jest w bazie
-        $userRepository = new UserRepository();
+        $userRepository = UserRepository::getInstance();
 
         $options = [
             'cost' => 12,

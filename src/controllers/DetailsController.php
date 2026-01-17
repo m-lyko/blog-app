@@ -13,7 +13,7 @@ class DetailsController extends AppController {
             exit;
         }        
 
-        $postRepository = new PostRepository();
+        $postRepository = PostRepository::getInstance();
 
         // pobranie id z parametru GET
         $id = $_GET['id'] ?? null;

@@ -5,6 +5,21 @@ require_once __DIR__.'/../models/Post.php';
 
 class PostRepository extends Repository {
 
+    private static $instance = null;
+
+    private function __construct()
+    {
+        parent::__construct();
+    }
+
+    public static function getInstance(){
+
+        if(self::$instance == null){
+            self::$instance = new PostRepository();
+        }
+        return self::$instance;
+    }
+
     public function getPost(int $id): ?Post
     {
         $query = $this->database->connect()->prepare(
@@ -79,5 +94,22 @@ class PostRepository extends Repository {
         }
 
         return $result;
+    }
+
+    public function getPostByContent(string $searchString): array
+    {
+        $searchString = '%' . strtolower($searchString) . '%';
+
+        $query = $this->database->connect()->prepare(
+            'SELECT * FROM v_posts_details 
+            WHERE LOWER(title) LIKE :search
+            OR LOWER(description) LIKE :search
+            OR LOWER(name) LIKE :search'
+        );
+
+        $query->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }

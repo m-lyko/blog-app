@@ -1,6 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
-<g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-	<circle cx="45" cy="45" r="45" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(90,113,106); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
-	<path d="M 70.216 43 H 47 V 19.784 c 0 -1.104 -0.896 -2 -2 -2 s -2 0.896 -2 2 V 43 H 19.784 c -1.104 0 -2 0.896 -2 2 s 0.896 2 2 2 H 43 v 23.216 c 0 1.104 0.896 2 2 2 s 2 -0.896 2 -2 V 47 h 23.216 c 1.104 0 2 -0.896 2 -2 S 71.32 43 70.216 43 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
-</g>
+<svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 88C68.3005 88 88 68.3005 88 44C88 19.6995 68.3005 0 44 0C19.6995 0 0 19.6995 0 44C0 68.3005 19.6995 88 44 88Z" fill="#5A716A"/>
+<path d="M60.714 43.214H45.786V28.286C45.786 27.5761 45.2099 27 44.5 27C43.7901 27 43.214 27.5761 43.214 28.286V43.214H28.286C27.5761 43.214 27 43.7901 27 44.5C27 45.2099 27.5761 45.786 28.286 45.786H43.214V60.714C43.214 61.4239 43.7901 62 44.5 62C45.2099 62 45.786 61.4239 45.786 60.714V45.786H60.714C61.4239 45.786 62 45.2099 62 44.5C62 43.7901 61.4239 43.214 60.714 43.214Z" fill="white" stroke="#5A716A" stroke-width="0.5"/>
 </svg>

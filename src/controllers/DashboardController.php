@@ -9,7 +9,7 @@ class DashboardController extends AppController {
 
     public function __construct()
     {
-        $this->postRepository = new PostRepository;
+        $this->postRepository = PostRepository::getInstance();
     }
 
     public function index() {

@@ -15,7 +15,7 @@ class PostController extends AppController {
 
     public function __construct()
     {
-        $this->postRepository = new PostRepository();
+        $this->postRepository = PostRepository::getInstance();
     }
 
     public function addPost()
@@ -47,11 +47,6 @@ class PostController extends AppController {
                 return $this->render('add_post', ['messages' => $this->messages]);
             }
 
-            // move_uploaded_file(
-            //     $_FILES['file']['tmp_name'],
-            //     dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
-            // );
-
             // utworzenie nowego obiektu Post z danymi z formularza
             $post = new Post(
                 null, // id generuje baza
@@ -68,34 +63,45 @@ class PostController extends AppController {
             header("Location: {$url}/dashboard");
             exit;
             
-            // return $this->render('posts', 
-            //     [
-            //         'messages' => $this->messages, 
-            //         'posts' => $this->postRepository->getPosts()
-            //     ]
-            // );
         }
 
         // renderowanie widoku dodawania postu
         return $this->render('add_post', ['messages' => $this->messages]);
     }
 
-    // private function validate(array $file): bool
-    // {
-    //     if($file['size'] > self::MAX_FILE_SIZE) {
-    //         $this->messages[] = 'Zbyt duży plik.';
-    //         return false;
-    //     }
+    
 
-    //     if(
-    //         !isset($file['type'])
-    //         || !in_array($file['type'], self::SUPPORTED_TYPES)
-    //     )
-    //     {
-    //         $this->messages[] = 'Zły typ pliku.';
-    //         return false;
-    //     }
+    public function search()
+    {
+        // sprawdzenie rodzaju przesyłanych danych
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-    //     return true;
-    // }
+        // obsługa zapytań tylko w formacie JSON
+        if($contentType === 'application/json') {
+         
+            // pobranie surowych danych
+            // json nie jest automatycznie (w przeciwieństwie do formularzy $_POST)
+            $content = trim(file_get_contents("php://input"));
+
+            // dekodowanie JSONA na tablicę asocjacyjną PHP
+            $decoded = json_decode($content, true);
+
+            // ustawienie nagłówka odpowiedzi na JSON
+            header('Content-type: application/json');
+
+            // ustawienie kodu statusu HTTP 200
+            http_response_code(200);
+
+            // dane pozyskane z przekazania klucza search do metody z repozytorium
+            // zamiana wyniku na JSON
+            $posts = $this->postRepository->getPostByContent($decoded['search']);
+
+            // foreach($posts as &$post) {
+            //     $post['description'] = Post::shortenDescription($post['description']);
+            // }
+
+            echo json_encode($posts);
+        }
+    }
+
 }

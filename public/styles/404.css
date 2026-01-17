@@ -1,0 +1,13 @@
+body {
+    font-family: "Inter";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.logo-section {
+    margin: 5vh;
+}

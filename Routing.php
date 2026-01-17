@@ -30,17 +30,25 @@ class Routing {
             'controller' => DashboardController::class,
             'action' => "index"
         ],
-        'details' => [
-            'controller' => DetailsController::class,
-            'action' => "index"
-        ],
         'account' => [
             'controller' => AccountController::class,
             'action' => "viewDetails"
         ],
-        'addpost' => [
+        'change-user-data' => [
+            'controller' => AccountController::class,
+            'action' => "changeUserData"
+        ],
+        'details' => [
+            'controller' => DetailsController::class,
+            'action' => "index"
+        ],
+        'add-post' => [
             'controller' => PostController::class,
             'action' => 'addPost'
+        ],
+        'search' => [
+            'controller' => PostController::class,
+            'action' => 'search'
         ]
         ];
         

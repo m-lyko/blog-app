@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="public/styles/dashboard.css">
-    <script src="public/scripts/main.js" defer></script>
-    <title>Dashboard</title>
+    <script type="text/javascript" src="./public/scripts/search.js" defer></script>
+    <title>Postorium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
 
 </head>
@@ -19,7 +18,7 @@
                 </a>
             </div>
             <div class="add-icon">
-                <a href="/addpost" aria-label="Dodaj post">
+                <a href="/add-post" aria-label="Dodaj post">
                 <img src="/public/img/addPost.svg">
                 </a>        
             </div>
@@ -56,5 +55,18 @@
         </section>
     </main>
 
+    <template id="post-template">
+        <div class="card">
+            <img src="" alt="Profile image">
+            <div class="card-text">
+                <h3>title</h3>
+                <p class="description">description</p>
+                <p class="author">author</p>
+            </div>
+            <a href="#">
+                <img src="/public/img/arrow.svg" alt="Arrow">
+            </a>
+        </div>
+    </template>
 </body>
 </html>
