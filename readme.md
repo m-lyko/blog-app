@@ -17,7 +17,7 @@ Zapewnia bezpieczeństwo m.in. poprzez rejestrację i logowanie.
 1. Upewnij się, że masz zainstalowany **Docker** oraz **Docker Compose**.
 2. Sklonuj repozytorium (lub pobierz pliki projektu).
 3. W głównym katalogu projektu uruchom terminal i wpisz komendę budującą i uruchamiającą kontenery:
-   `docker-compose up -d --build`
+   `docker compose up -d --build`
 4. Aplikacja powinna być dostępna pod adresem: `http://localhost:8080`
 
 ## Aplikacja
