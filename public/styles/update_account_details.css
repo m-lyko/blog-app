@@ -72,11 +72,12 @@ body {
 .avatar-section {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .avatar-section .profile-avatar {
     height: 18rem;
-    width: auto;
+    width: 18rem;
     border-radius: 100%;
 }
 
@@ -92,10 +93,26 @@ h2 {
     gap: 1rem;
 }
 
+.data-row-file {
+    min-height: 3rem;
+    min-width: 30rem;
+    background-color: #fff;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+}
+
+.data-row-file input[type="file"]{
+    display: none;
+}
+
 .data-row {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    justify-content: center;
 }
 
 .data-box {
@@ -128,4 +145,14 @@ h2 {
     justify-self: end;
     font-size: 1.5rem;
     transform: translateX(-1.5rem);
+}
+
+.file-btn{
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Inter';
+}
+
+.file-btn:hover {
+    color: #A8C0F9;
 }

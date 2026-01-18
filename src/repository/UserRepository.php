@@ -35,12 +35,12 @@ class UserRepository extends Repository {
                 $user->getSurname(),
                 $user->getEmail(),
                 $user->getPassword(),
-                'user'
+                2
             ]
         );
     }
 
-    public function editUserDetails(int $id, string $name, string $surname, string $email, string $password)
+    public function editUserDetails(int $id, string $name, string $surname, string $email, string $password, ?string $avatar)
     {
         $stmt = $this->database->connect()->prepare(
             '
@@ -48,7 +48,8 @@ class UserRepository extends Repository {
             name = ?, 
             surname = ?,
             email = ?,
-            password = ?
+            password = ?,
+            avatar = ?
             WHERE id_users = ?
             '
         );
@@ -58,6 +59,7 @@ class UserRepository extends Repository {
             $surname,
             $email,
             $password,
+            $avatar,
             $id
         ]);
     }
@@ -97,7 +99,4 @@ class UserRepository extends Repository {
             $user['id_users']
         );
     }
-
-    // public function getAllUsers(): ?
-    // dokończyć
 }

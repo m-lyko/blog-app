@@ -23,7 +23,7 @@
     </div>
 
     <div class="post-container">
-        <form action="/addpost" method="POST" id="postForm">
+        <form action="/add-post" method="POST" id="postForm">
 
             <div class="messages">
                 <?php

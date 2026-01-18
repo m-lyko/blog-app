@@ -53,7 +53,6 @@ search.addEventListener('keyup', function(event) {
 
 function loadPosts(posts, searchText) {
     posts.forEach(post => {
-        console.log(post);
         createPost(post, searchText);
     });
 }

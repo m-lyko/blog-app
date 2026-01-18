@@ -56,6 +56,7 @@ class SecurityController extends AppController {
         $_SESSION['user_email'] = $user->getEmail();
         $_SESSION['user_name'] = $user->getName();
         $_SESSION['user_surname'] = $user->getSurname();
+        $_SESSION['user_role'] = $user->getRole();
         
         // prosta flaga
         $_SESSION['is_logged_in'] = true;

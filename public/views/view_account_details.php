@@ -59,7 +59,7 @@
             <div class="data-row">
                 <span class="text-label">Liczba postów</span>
                 <div class="data-box">
-                    <?= $email; ?>
+                    <?= $postsCount; ?>
                 </div>
             </div>              
 

@@ -20,6 +20,25 @@ class PostRepository extends Repository {
         return self::$instance;
     }
 
+
+
+    public function getPostsCountByUser(int $user_id): int {
+
+        $stmt = $this->database->connect()->prepare(
+            '
+            SELECT count(*) FROM posts WHERE author = :authorID
+            '
+        );
+
+        $stmt->bindParam(':authorID', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+
+
+
     public function getPost(int $id): ?Post
     {
         $query = $this->database->connect()->prepare(
@@ -45,9 +64,12 @@ class PostRepository extends Repository {
             $post['description'],
             $post['avatar'],
             $post['name'],
-            $post['surname']
+            $post['surname'],
+            (int)$post['author']
         );
     }
+
+
 
     public function addPost(Post $post, int $authorID): void
     {
@@ -56,8 +78,6 @@ class PostRepository extends Repository {
             'INSERT INTO posts (title, description, created_at, author)
             values (?, ?, ?, ?)'
         );
-
-        // dodać dodawania autora posta
 
         $query->execute(
             [
@@ -68,6 +88,9 @@ class PostRepository extends Repository {
             ]
         );
     }
+
+
+
 
     public function getPosts(): array
     {
@@ -89,12 +112,15 @@ class PostRepository extends Repository {
                 $post['description'],
                 $post['avatar'],
                 $post['name'],
-                $post['surname']
+                $post['surname'],
+                $post['author']
             );
         }
 
         return $result;
     }
+
+
 
     public function getPostByContent(string $searchString): array
     {
@@ -111,5 +137,27 @@ class PostRepository extends Repository {
         $query->execute();
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    
+    public function deletePost(int $postID): void
+    {
+        $stmt =  $this->database->connect()->prepare(
+            'DELETE FROM posts WHERE id_posts = :id'
+        );
+        $stmt->bindParam(':id', $postID, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+
+
+
+    public function updatePost(int $postID, string $title, string $description): void
+    {
+        $stmt = $this->database->connect()->prepare(
+            'UPDATE posts SET title = ?, description = ? WHERE id_posts = ?'
+        );
+        $stmt->execute([$title, $description, $postID]);
     }
 }

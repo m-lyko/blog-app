@@ -15,7 +15,7 @@ class User {
         string $password, 
         string $name, 
         string $surname,
-        string $role = 'user',
+        int $role = 2,
         $avatar = null,
         $id = null
     ) {

@@ -12,15 +12,43 @@
 </head>
 <body>
 
+    <?php
+        $currentUserId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : null;
+
+        $userRoleId = isset($_SESSION['user_role']) ? (int)$_SESSION['user_role'] : 2;
+
+        $isAuthor = ($currentUserId !== null) && ($post->getAuthorId() === $currentUserId);
+        $isAdmin = ($userRoleId === 1);
+    ?>
+
     <div class="base-container">
 
-        <nav>
-            <div class="home-icon">
-                <a href="/dashboard">
-                    <img src="/public/img/home.svg" alt="Home">
-                </a>
+        <div class="menu-container">
+            <div class="main-button">
+                <img src="/public/img/hamburger.svg" alt="Menu button">
             </div>
-        </nav>
+
+            <a href="/dashboard" class="back-button">
+                <img src="/public/img/back.svg" alt="Back button">
+            </a>
+
+            <?php if ($isAuthor || $isAdmin): ?>
+
+                <a href="/edit-post?id=<?= $post->getID(); ?>" class="edit-button">
+                    <img src="/public/img/edit.svg" alt="Edit post button">
+                </a>
+
+                <form id="delete-form" action="delete-post" method="POST">
+                    <input type="hidden" name="id" value="<?= $post->getID(); ?>">
+
+                    <button type="submit" class="delete-button">
+                        <img src="/public/img/trash.svg" alt="Delete post button">
+                    </button>
+                </form>
+                
+            <?php endif; ?>
+                
+        </div>
         
         <main>
             <header>

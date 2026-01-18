@@ -8,8 +8,17 @@ class Post {
     private $avatarPath; 
     private $authorName;
     private $authorSurname;
+    private $authorID;
 
-    public function __construct($id, $title, $description, $avatarPath, $name, $surname)
+    public function __construct(
+        $id, 
+        $title, 
+        $description, 
+        $avatarPath, 
+        $name, 
+        $surname,
+        $authorID        
+        )
     {
         $this->id = $id;
         $this->title = $title;
@@ -17,6 +26,7 @@ class Post {
         $this->avatarPath = $avatarPath;
         $this->authorName = $name;
         $this->authorSurname = $surname;
+        $this->authorID = $authorID;
     }
 
     public function getID() {
@@ -62,5 +72,9 @@ class Post {
 
     public function getAuthorSurname() {
         return $this->authorSurname;
+    }
+
+    public function getAuthorID(){
+        return $this->authorID;
     }
 }

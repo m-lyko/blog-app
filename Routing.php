@@ -46,6 +46,14 @@ class Routing {
             'controller' => PostController::class,
             'action' => 'addPost'
         ],
+        'delete-post' => [
+            'controller' => PostController::class,
+            'action' => 'deletePost'
+        ],
+        'edit-post' => [
+            'controller' => PostController::class,
+            'action' => 'editPost'
+        ],
         'search' => [
             'controller' => PostController::class,
             'action' => 'search'

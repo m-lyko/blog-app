@@ -54,7 +54,8 @@ class PostController extends AppController {
                 $_POST['description'],
                 null,
                 null,
-                null
+                null,
+                (int)$_SESSION['user_id']
             );
 
             $this->postRepository->addPost($post, $_SESSION['user_id']);
@@ -68,6 +69,77 @@ class PostController extends AppController {
         // renderowanie widoku dodawania postu
         return $this->render('add_post', ['messages' => $this->messages]);
     }
+
+
+    public function deletePost()
+    {
+        if (!$this->isPost()) {
+            return $this->render('dashboard'); 
+        }
+
+        $id = (int)$_POST['id'];
+        $post = $this->postRepository->getPost($id);
+
+        if (!$post) {
+            header("Location: /dashboard");
+            exit;
+        }
+
+        $currentUserId = $_SESSION['user_id'];
+        $userRole = isset($_SESSION['user_role']) ? (int)$_SESSION['user_role'] : 2;
+        
+        if ($post->getAuthorId() === $currentUserId 
+            || $userRole === 1) 
+        {
+            $this->postRepository->deletePost($id);
+            header("Location: /dashboard");
+            exit;
+        } else {
+            return $this->render('dashboard', ['messages' => ['Nie masz uprawnień do wykonania tej operacji.']]);
+        }
+    }
+
+    public function editPost()
+    {
+        if ($this->isGet()) {
+            $id = (int)$_GET['id'];
+            $post = $this->postRepository->getPost($id);
+
+            if (!$post) {
+                header("Location: /dashboard");
+                exit;
+            }
+
+            $currentUserId = $_SESSION['user_id'];
+            $userRole = $_SESSION['user_role'] ? (int)$_SESSION['user_role'] : 2;
+
+            if ($post->getAuthorId() !== $currentUserId 
+                && $userRole !== 1) 
+            {
+                return $this->render('dashboard', ['messages' => ['Nie masz uprawnień do wykonania tej operacji.']]);
+            }
+
+            return $this->render('edit_post', ['post' => $post]);
+        }
+
+        if ($this->isPost()) {
+            $id = (int)$_POST['id'];
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+
+            $post = $this->postRepository->getPost($id);
+            $currentUserId = $_SESSION['user_id'];
+            $userRole = $_SESSION['user_role'] ? (int)$_SESSION['user_role'] : 2;
+
+            if ($post->getAuthorId() === $currentUserId || $userRole === 1) {
+                $this->postRepository->updatePost($id, $title, $description);
+                header("Location: /dashboard");
+                exit;
+            } else {
+                return $this->render('dashboard', ['messages' => ['Nie masz uprawnień do wykonania tej operacji.']]);
+            }
+        }
+    }    
 
     
 

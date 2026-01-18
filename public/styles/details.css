@@ -1,23 +1,84 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter.ttf');
+}
+
 body {
-    margin-top: 10vh;
+    font-family: 'Inter', sans-serif;
+    margin: 3rem;
 }
 
-.home-icon {
-    margin-right: 15vw;
-    display: flex;
-    justify-content: flex-end;
+.back-button {
+    text-decoration: none;
 }
 
-.home-icon img {
+
+.menu-container {
+    display: grid;
+    width: fit-content;
+}
+
+
+.main-button, .back-button, .edit-button, .delete-button {
+    grid-area: 1 / 1;
+    border-radius: 100%;
+    background: none;
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+    transition-delay: 0.05s;
+
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+
+}
+
+#delete-form {
+    grid-area: 1 / 1;
+}
+
+.main-button {
+    z-index: 10;
+}
+
+.menu-container:hover .back-button {
+    transform: translateX(4.5rem);
+}
+
+.menu-container:hover .edit-button {
+    transform: translateX(9rem);
+}
+
+.menu-container:hover .delete-button {
+    transform: translateX(13.5rem);
+}
+
+.menu-container:hover .back-button:hover {
+    transform: translateX(4.5rem) scale(1.1);
+}
+
+.menu-container:hover .edit-button:hover {
+    transform: translateX(9rem) scale(1.1);
+}
+
+.menu-container:hover .delete-button:hover {
+    transform: translateX(13.5rem) scale(1.1);
+}
+
+.main-button:hover,
+.back-button:hover,
+.edit-button:hover,
+.delete-button:hover
+{
+    filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.25));
+}
+
+.main-button img, .back-button img, .edit-button img, .delete-button img {
     width: 4rem;
     height: 4rem;
-    transition: transform 0.2s ease, filter 0.2s ease;
-
-}
-
-.home-icon img:hover {
-    transform: scale(1.05);
-    filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.25));
+    display: block;
 }
 
 /* nagłówek i treść posta */
