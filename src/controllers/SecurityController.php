@@ -129,11 +129,21 @@ class SecurityController extends AppController {
             return $this->render('register', ['messages' => ['Hasła muszą być identyczne!']]);
         }
 
+        if (strlen($password) < 8) {
+            return $this->render('register', ['messages' => ['Hasło jest zbyt słabe (min. 8 znaków)!']]);
+        }
+
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             return $this->render('register', ['messages' => ['Nieprawidłowy format adresu e-mail']]);
         }
 
         $userRepository = UserRepository::getInstance();
+
+        $existingUser = $userRepository->getUser($email);
+
+        if ($existingUser) {
+            return $this->render("login", ["messages" => ["Rejestracja zakończona. Jeśli wszystkie dane pozytywnie przeszły walidację, możesz się zalogować."]]);
+        }
 
         $options = [
             'cost' => 12,
@@ -151,12 +161,12 @@ class SecurityController extends AppController {
             $userRepository->addUser($user);
         } catch (PDOException $e) {
             if ($e->getCode() == '23505') {
-                return $this->render('register', ['messages' => ['Ten adres email jest już zajęty!']]);
+                return $this->render('register', ['messages' => ['Rejestracja zakończona. Jeśli wszystkie dane pozytywnie przeszły walidację, możesz się zalogować.']]);
             }
             throw $e; 
         }
 
-        return $this->render("login", ["message" => "Zarejestrowano uzytkownika pomyślnie."]);
+        return $this->render("login", ["messages" => ["Rejestracja zakończona. Jeśli wszystkie dane pozytywnie przeszły walidację, możesz się zalogować."]]);
     }
 
     public function registered() {

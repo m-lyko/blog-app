@@ -20,6 +20,8 @@ class UserRepository extends Repository {
         return self::$instance;
     }
 
+
+
     public function addUser(User $user) 
     {
         // znaki ? to placeholdery (ważna kolejność!)
@@ -39,6 +41,8 @@ class UserRepository extends Repository {
             ]
         );
     }
+
+
 
     public function editUserDetails(int $id, string $name, string $surname, string $email, string $password, ?string $avatar)
     {
@@ -64,12 +68,17 @@ class UserRepository extends Repository {
         ]);
     }
 
+
+    
     public function getUser(string $email): ?User 
     {
         // wywołanie funkcji prepare() - "przygotuj, ale jeszcze nie wywołuj"
         $query = $this->database->connect()->prepare(
             '
-            SELECT * FROM public.users WHERE email = :email;
+            SELECT 
+            id_users, name, surname, email, password, role, avatar
+            FROM public.users 
+            WHERE email = :email;
             '
         );
 

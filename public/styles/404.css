@@ -11,3 +11,15 @@ body {
 .logo-section {
     margin: 5vh;
 }
+
+@media screen and (max-width: 768px) {
+
+    h1{
+        font-size: 1rem;
+    }
+
+    .logo-section img{
+        width: 60%;
+    }
+
+}

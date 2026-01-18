@@ -33,8 +33,6 @@
 
     <main class="content-area">
         <section class="card-grid">
-            <!-- sprawdza czy zmienna $posts istnieje -->
-            <!-- dwukropek zastępuje nawias klamrowy -->
             <?php if(isset($posts)): ?>
                 <?php foreach($posts as $post): ?>
                     <div class="card">

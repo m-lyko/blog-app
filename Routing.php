@@ -88,7 +88,8 @@ class Routing {
             }
             
             if(!isset(self::$routes[$path])) {
-            include 'public/views/404.html';
+                http_response_code(404);
+                include 'public/views/404.html';
             return;
         }
         //TODO na podstawie sciezki sprawdzamy jaki HTML zwrocic

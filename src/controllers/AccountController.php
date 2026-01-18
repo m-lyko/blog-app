@@ -70,7 +70,7 @@ class AccountController extends AppController {
             if(!empty($newEmail) && !empty($confirmedEmail)
                 && $newEmail === $confirmedEmail) {
 
-                if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                if(!filter_var($newEmail, FILTER_VALIDATE_EMAIL)){
                     $data = [
                         'name' => $user->getName(),
                         'surname' => $user->getSurname(),
@@ -95,6 +95,16 @@ class AccountController extends AppController {
                 && !empty($confirmedPassword)
                 && $newPassword === $confirmedPassword
             ) {
+
+                if (strlen($newPassword) < 8) {
+                     return $this->render('update_account_details', [
+                         'messages' => ['Nowe hasło jest zbyt słabe (min. 8 znaków)!'],
+                         'name' => $user->getName(),
+                         'surname' => $user->getSurname(),
+                         'email' => $user->getEmail(),
+                         'avatar' => $user->getAvatar()
+                     ]);
+                }                
                 $password = password_hash($newPassword, PASSWORD_DEFAULT);
             }
             else {

@@ -79,6 +79,8 @@ body {
     height: 18rem;
     width: 18rem;
     border-radius: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 h2 {
@@ -205,6 +207,8 @@ h2 {
     .avatar-section .profile-avatar {
         width: 10rem;
         height: 10rem;
+        object-fit: cover;
+
     }    
 
     h2 {

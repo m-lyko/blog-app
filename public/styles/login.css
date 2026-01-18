@@ -1,13 +1,22 @@
 body {
   
+
     background-color: #D4B483;
     min-height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
     gap: 5rem;
     padding: 0 5vw 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-space{
+    display: flex;
+    flex-direction: row;
+    gap: 10vw;
+    align-items: center;
 }
 
 .logo-section img {
@@ -21,6 +30,7 @@ body {
     padding: 5rem 3rem 2.5rem 3rem;
     border-radius: 0.1rem;
     min-height: 12rem;
+    position: relative;
 }
 
 .login-panel form {
@@ -77,6 +87,21 @@ body {
     background-color: #C8A96D;
 }
 
+.new-user{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #d79799;
+    font-size: 0.8rem;
+}
+
+.new-user:hover{
+    color: #A8C0F9;
+}
+
 @media screen and (max-width: 768px) {
 
 
@@ -84,13 +109,12 @@ body {
         display: flex;
         flex-direction: column;
         margin: 1rem;
-        padding: 0;
+        padding: 0 0 10rem 0;
         gap: 3rem;
     }
 
     .logo-section{
-        width: auto;
-        height: auto;
+        width: 80%;
     }
 
     .logo-section img{
@@ -100,7 +124,6 @@ body {
     .login-panel{
         width: 60%;
         margin: 0;
-
     }
 
 }

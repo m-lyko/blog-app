@@ -68,7 +68,7 @@
                         <div class="box-icon">
                             <img src="/<?= $post->getAvatarPath(); ?>" alt="Profile image">
                         </div>
-                        <span>Autor: <strong class="author-name"><?= $post->getAuthorName(); ?></strong></span>
+                        <span><strong class="author-name"><?= $post->getAuthorName(); ?></strong></span>
                     </div>
                 </div>
 

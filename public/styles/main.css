@@ -8,8 +8,16 @@ body {
     background-color: #D8D5DB;
 }
 
+
 .message-error{
     font-family: 'Inter';
     text-align: center;
     color: #c1666b;
+    top: 0;
+    margin-top: 1rem;
+    background-color: #d8d5db80;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    max-width: 40%;
 }

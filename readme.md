@@ -15,3 +15,26 @@ Zapewnia bezpieczeństwo m.in. poprzez rejestrację i logowanie.
 ## Instalacja
 
 ##
+
+
+Administratorzy
+-------------------
+admin@test.com
+Administ1!
+
+
+Użytkownicy
+-------------------
+ania@mejl.com
+aniakowal
+
+
+bako@post.com
+Korczek1!
+
+
+gold@user.pl
+Goldmann1!
+
+robert@post.com
+Robert1!

@@ -3,24 +3,30 @@
 <head>
     <link rel="stylesheet" href="/public/styles/main.css">
     <link rel="stylesheet" href="/public/styles/register.css">
+    <script type="text/javascript" src="./public/scripts/error.js" defer></script>
     <!-- link czcionki -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejestracja nowego użytkownika</title>
 </head>
 <body>
+
+
+    <a class="logo" href="/login">
+        <img src="/public/img/blogosfera.svg">
+    </a>
+
+
     <div class="register-panel">
         <form action="/register" method="POST">
 
             <div class="messages">
-                <?php
-                    if(isset($messages)){
-                        foreach($messages as $message) {
-                            echo '<div class="message-error">' . $message . '</div>';
-                        }
-                    }
-                ?>
-            </div>   
+                <?php if (isset($messages)): ?>
+                    <?php foreach ($messages as $msg): ?>
+                        <div class="message-error"><?= htmlspecialchars($msg) ?></div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div> 
 
             <input placeholder="Adres e-mail" name="email">
             <input placeholder="Powtórz adres e-mail" name="confirmedEmail">

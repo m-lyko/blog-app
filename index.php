@@ -1,5 +1,6 @@
 <?php
 
+ini_set('display_errors', 0);
 
 // Wczytujemy plik 'Routing.php', dzięki czemu skrypt "widzi" klasę Routing i może używać jej metod.
 require 'Routing.php';
