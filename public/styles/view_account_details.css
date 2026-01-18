@@ -119,3 +119,68 @@ h2 {
     font-size: 1.5rem;
     transform: translateX(-1.5rem);
 }
+
+
+
+/* Responsywność dla podglądu konta */
+@media screen and (max-width: 768px) {
+    
+    body {
+        margin: 0;
+        padding: 1rem;
+        padding-bottom: 5rem; /* Miejsce na scrollowanie */
+    }
+
+    .menu-container {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 4rem;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .main-button {
+        display: none;
+    }
+
+    .back-button, .edit-button, .logout-button {
+        grid-area: auto;
+        position: static;
+        transform: none !important; /* Ważne, by nadpisać style hover */
+    }
+    
+    .back-button img, .edit-button img, .logout-button img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .avatar-section .profile-avatar {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .data-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Wyśrodkowanie */
+        width: 100%;
+    }
+
+    .text-label {
+        transform: none;
+        justify-self: center;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .data-box {
+        min-width: 0; 
+        width: 80%;
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        margin-top: 1rem;
+    }
+}

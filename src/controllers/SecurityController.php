@@ -36,6 +36,10 @@ class SecurityController extends AppController {
         $email = $_POST["email"] ?? '';
         $password = $_POST["password"] ?? '';
         
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $this->render('login', ['messages' => ['Nieprawidłowy format adresu e-mail']]);
+        }
+
         $userRepository = UserRepository::getInstance();
         
         // szukamy użytkownika w bazie po emailu
@@ -125,7 +129,10 @@ class SecurityController extends AppController {
             return $this->render('register', ['messages' => ['Hasła muszą być identyczne!']]);
         }
 
-        // TODO try catch email już jest w bazie
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return $this->render('register', ['messages' => ['Nieprawidłowy format adresu e-mail']]);
+        }
+
         $userRepository = UserRepository::getInstance();
 
         $options = [
@@ -140,7 +147,14 @@ class SecurityController extends AppController {
         
         $user = new User($email, $hashedPassword, $name, $surname);
 
-        $userRepository->addUser($user);
+        try {
+            $userRepository->addUser($user);
+        } catch (PDOException $e) {
+            if ($e->getCode() == '23505') {
+                return $this->render('register', ['messages' => ['Ten adres email jest już zajęty!']]);
+            }
+            throw $e; 
+        }
 
         return $this->render("login", ["message" => "Zarejestrowano uzytkownika pomyślnie."]);
     }

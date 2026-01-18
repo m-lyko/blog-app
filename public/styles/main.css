@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter.ttf');
+}
+
+
 body {
     background-color: #D8D5DB;
+}
+
+.message-error{
+    font-family: 'Inter';
+    text-align: center;
+    color: #c1666b;
 }

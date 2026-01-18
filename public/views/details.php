@@ -77,13 +77,13 @@
                         <div class="box-icon">
                             <img src="/public/img/share.svg" alt="Share">
                         </div>
-                        <span><b>77</b></span>
+                        <span><b>13</b></span>
                     </div>
                 </div>                
 
                 <div class="box reverse">
                     <div class="bar right">
-                        <span><b>77</b></span>
+                        <span><b>76</b></span>
                         <div class="box-icon icon-right">
                             <img src="/public/img/like.svg" alt="Like">                    
                         </div>

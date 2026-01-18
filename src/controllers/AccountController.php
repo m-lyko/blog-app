@@ -69,6 +69,18 @@ class AccountController extends AppController {
             
             if(!empty($newEmail) && !empty($confirmedEmail)
                 && $newEmail === $confirmedEmail) {
+
+                if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                    $data = [
+                        'name' => $user->getName(),
+                        'surname' => $user->getSurname(),
+                        'email' => $user->getEmail(),
+                        'avatar' => $user->getAvatar(),
+                        'messages' => ['Nieprawidłowy format nowego adresu email']
+                    ];                    
+
+                    return $this->render('update_account_details', $data);
+                }
                 $email = $newEmail;
             }
             else {

@@ -195,3 +195,124 @@ span {
     right: 0;
     transform: translateX(-3.5rem);
 }
+
+
+
+@media screen and (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 1rem;
+        padding-bottom: 5rem;
+    }
+
+    .menu-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-bottom: 2rem;
+        grid-template-columns: none;
+    }
+
+    .main-button {
+        display: none;
+    }
+
+    .back-button, .edit-button, .delete-button,
+    .menu-container:hover .back-button,
+    .menu-container:hover .edit-button,
+    .menu-container:hover .delete-button,
+    .back-button:hover, .edit-button:hover, .delete-button:hover,
+    .back-button:active, .edit-button:active, .delete-button:active,
+    .back-button:focus, .edit-button:focus, .delete-button:focus {
+        position: static;
+        display: block;
+        margin: 0;
+        grid-area: auto;
+        
+        transform: none !important;
+        filter: none !important;
+    }
+
+    #delete-form {
+        margin: 0;
+        grid-area: auto;
+    }
+
+    .back-button img, .edit-button img, .delete-button img {
+        width: 4rem !important;
+        height: 4rem !important;
+    }
+
+    main {
+        margin: 0;
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .post-content{
+        padding: 0 2rem;
+    }
+    
+    .post-content p {
+        text-align: justify;
+        font-size: 1.2rem;
+        margin: 1.5rem 0;
+    }
+
+    .bottom-bar {
+        margin: 2rem 0;
+        width: 100%;
+    }
+
+    .box-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .box {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .bar {
+        width: 90%;
+        min-width: 0;
+    }
+
+    .bar.center span, 
+    .bar.left span {
+        transform: none;
+    }
+    
+    .box-icon img {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-width: 0.2rem;
+    }
+
+    .bar.left .box-icon {
+        transform: none;
+        left: -1rem;
+    }
+    
+    .bar.center .box-icon {
+        transform: none;
+        left: -1rem;
+        position: absolute;
+    }
+
+    .bar.right .box-icon {
+        transform: none;
+        left: -1rem;
+    }
+}

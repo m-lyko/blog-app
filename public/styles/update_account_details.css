@@ -156,3 +156,86 @@ h2 {
 .file-btn:hover {
     color: #A8C0F9;
 }
+
+
+
+@media screen and (max-width: 768px) {
+    
+    body{
+        margin: 0;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+    .menu-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-bottom: 4rem;
+        grid-template-columns: none;
+    }
+
+    .main-button {
+        display: none;
+    }
+
+    .back-button, .edit-button {
+        display: block;
+        position: static;
+        grid-area: auto;
+        transform: none;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+
+    .back-button img, .edit-button img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .data-row-file{
+        min-width: 0;
+        min-height: 0;
+        gap: 0.5rem;
+
+    }
+
+    .avatar-section .profile-avatar {
+        width: 10rem;
+        height: 10rem;
+    }    
+
+    h2 {
+        margin-top: 1rem;
+    }
+
+    .data-box input{
+        min-width: 0;
+        width: 100%;
+
+    }
+
+    .data-row {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        gap: 0.5rem;
+
+    }
+
+    .text-label {
+        transform: none;
+        justify-self: center;
+        text-align: center;
+    }
+
+    .data-row-file,
+    .data-box {
+        width: 100%;
+        min-width: 0; 
+        width: 80%;
+        font-size: 1.2rem;
+    }
+}

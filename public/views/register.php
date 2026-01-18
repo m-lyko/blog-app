@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/public/styles/main.css">
     <link rel="stylesheet" href="/public/styles/register.css">
     <!-- link czcionki -->
     <meta charset="UTF-8">
@@ -10,6 +11,17 @@
 <body>
     <div class="register-panel">
         <form action="/register" method="POST">
+
+            <div class="messages">
+                <?php
+                    if(isset($messages)){
+                        foreach($messages as $message) {
+                            echo '<div class="message-error">' . $message . '</div>';
+                        }
+                    }
+                ?>
+            </div>   
+
             <input placeholder="Adres e-mail" name="email">
             <input placeholder="Powtórz adres e-mail" name="confirmedEmail">
             <input placeholder="Hasło" type="password" name="password" id="password_1">
