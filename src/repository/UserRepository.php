@@ -26,8 +26,10 @@ class UserRepository extends Repository {
     {
         // znaki ? to placeholdery (ważna kolejność!)
         $query = $this->database->connect()->prepare(
-            'INSERT INTO users (name, surname, email, password, role)
-            VALUES (?, ?, ?, ?, ?)'
+            '
+            INSERT INTO users (name, surname, email, password, role)
+            VALUES (?, ?, ?, ?, ?)
+            '
         );
 
         // wykonanie zapytania
