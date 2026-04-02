@@ -39,28 +39,28 @@
             <div class="data-row">
                 <span class="text-label">Imię</span>
                 <div class="data-box">
-                    <?= $name; ?>
+                    <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>
                 </div>
             </div>
 
             <div class="data-row">
                 <span class="text-label">Nazwisko</span>
                 <div class="data-box">
-                    <?= $surname; ?>
+                    <?= htmlspecialchars($surname, ENT_QUOTES, 'UTF-8') ?>
                 </div>
             </div>
 
             <div class="data-row">
                 <span class="text-label">E-mail</span>
                 <div class="data-box">
-                    <?= $email; ?>
+                    <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>
                 </div>
             </div>  
 
             <div class="data-row">
                 <span class="text-label">Liczba postów</span>
                 <div class="data-box">
-                    <?= $postsCount; ?>
+                    <?= (int)$postsCount ?>
                 </div>
             </div>              
 

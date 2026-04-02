@@ -52,10 +52,10 @@
         
         <main>
             <header>
-                <h1><?= $post->getTitle(); ?></h1>
+                <h1><?= htmlspecialchars($post->getTitle(), ENT_QUOTES, 'UTF-8') ?></h1>
             </header>
             <div class="post-content">
-                <p><?= $post->getDescription(); ?></p>
+                <p><?= htmlspecialchars($post->getDescription(), ENT_QUOTES, 'UTF-8') ?></p>
             </div>
         </main>
     </div>
@@ -68,7 +68,7 @@
                         <div class="box-icon">
                             <img src="/<?= $post->getAvatarPath(); ?>" alt="Profile image">
                         </div>
-                        <span><strong class="author-name"><?= $post->getAuthorName(); ?></strong></span>
+                        <span><strong class="author-name"><?= htmlspecialchars($post->getAuthorName(), ENT_QUOTES, 'UTF-8') ?></strong></span>
                     </div>
                 </div>
 

@@ -51,14 +51,14 @@
             <div class="data-row">
                 <span class="text-label">Imię</span>
                 <div class="data-box">
-                    <input name="name" type="text" value="<?= isset($name) ? $name : ''; ?>" placeholder="Wpisz imię" autocomplete="given-name">
+                    <input name="name" type="text" value="<?= isset($name) ? htmlspecialchars($name, ENT_QUOTES, 'UTF-8') : '' ?>" placeholder="Wpisz imię" autocomplete="given-name">
                 </div>
             </div>
 
             <div class="data-row">
                 <span class="text-label">Nazwisko</span>
                 <div class="data-box">
-                    <input name="surname" type="text" value="<?= isset($surname) ? $surname : ''; ?>" placeholder="Wpisz nazwisko">
+                    <input name="surname" type="text" value="<?= isset($surname) ? htmlspecialchars($surname, ENT_QUOTES, 'UTF-8') : '' ?>" placeholder="Wpisz nazwisko">
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
             <div class="data-row">
                 <span class="text-label">Hasło</span>
                 <div class="data-box">
-                    <input name="password" type="password" value="<?= isset($password) ? $password : ''; ?>" placeholder="Wpisz nowe hasło">
+                    <input name="password" type="password" value="" placeholder="Wpisz nowe hasło">
                 </div>
             </div>  
             

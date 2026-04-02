@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <header class="top-bar">
         <div class="header-left">
@@ -19,8 +21,8 @@
             </div>
             <div class="add-icon">
                 <a href="/add-post" aria-label="Dodaj post">
-                <img src="/public/img/addPost.svg">
-                </a>        
+                    <img src="/public/img/addPost.svg">
+                </a>
             </div>
         </div>
         <div class="header-right">
@@ -33,17 +35,18 @@
 
     <main class="content-area">
         <section class="card-grid">
-            <?php if(isset($posts)): ?>
-                <?php foreach($posts as $post): ?>
+            <?php if (isset($posts)): ?>
+                <?php foreach ($posts as $post): ?>
                     <div class="card">
                         <img src="<?= $post->getAvatarPath(); ?>" alt="Profile image">
-                        
+
                         <div class="card-text">
-                            <h3><?= $post->getTitle(); ?></h3>
-                            <p class="description"><?= $post->getShortDescription(); ?></p>
-                            <p class="author">Autor: <?= $post->getAuthorName(); ?></p>
+                            <h3><?= htmlspecialchars($post->getTitle(), ENT_QUOTES, 'UTF-8') ?></h3>
+                            <p class="description"><?= htmlspecialchars($post->getShortDescription(), ENT_QUOTES, 'UTF-8') ?>
+                            </p>
+                            <p class="author">Autor: <?= htmlspecialchars($post->getAuthorName(), ENT_QUOTES, 'UTF-8') ?></p>
                         </div>
-                        
+
                         <a href="/details?id=<?= $post->getID(); ?>">
                             <img src="/public/img/arrow.svg" alt="Arrow">
                         </a>
@@ -67,4 +70,5 @@
         </div>
     </template>
 </body>
+
 </html>
